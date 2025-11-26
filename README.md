@@ -66,6 +66,27 @@ You can also set the package to the one from nixpkgs (`pkgs.niri`), which will l
 }
 ```
 
+## Per-Keyboard Configuration
+
+Niri supports per-keyboard configuration, allowing you to set different settings for different keyboard devices. See [`PER_KEYBOARD_CONFIG.md`](./PER_KEYBOARD_CONFIG.md) for detailed documentation and examples.
+
+```nix
+{
+  programs.niri.settings = {
+    input = {
+      keyboards."ERGO K860 Keyboard" = {
+        xkb = {
+          layout = "us";
+          options = "ctrl:swap_lwin_lctl,caps:ctrl_modifier";
+        };
+        repeat-delay = 500;
+        repeat-rate = 28;
+      };
+    };
+  };
+}
+```
+
 If for whatever reason you want or need to override this, you can set `programs.niri.config`.
 You should give this option structured output from `niri.lib.kdl`.
 
